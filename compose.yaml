@@ -1,0 +1,20 @@
+services:
+  notes:
+    build: .
+    image: student-notes:1.0.0
+    container_name: student-notes
+    restart: unless-stopped
+    ports:
+      - "8202:8202"
+    environment:
+      - PORT=8202
+    volumes:
+      - notes-data:/data
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  notes-data:
